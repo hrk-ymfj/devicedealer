@@ -1,10 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<void> main() async {
-  // Fireabse初期化
-  await Firebase.initializeApp();
+void main() async {
   runApp(MyApp());
 }
 
@@ -12,41 +8,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primarySwatch: Colors.teal,
       ),
-      home: MyFirestorePage(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyFirestorePage extends StatefulWidget {
-  @override
-  _MyFirestorePageState createState() => _MyFirestorePageState();
-}
-
-class _MyFirestorePageState extends State<MyFirestorePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            ElevatedButton(
-              child: Text('コレクション＋ドキュメント作成'),
-              onPressed: () async {
-                // ドキュメント作成
-                await FirebaseFirestore.instance
-                    .collection('users') // コレクションID
-                    .doc('id_abc') // ドキュメントID
-                    .set({'name': '鈴木', 'age': 40}); // データ
-              },
+      appBar: AppBar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: (newtext) {},
+              decoration: InputDecoration(
+                  labelText: "メールアドレス",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
